@@ -20,7 +20,7 @@ class Arma:
         self.dano = dano
         self.capacidade_pente = capacidade_pente
         self.municao_reserva = municao_reserva
-        self.municao_no_pente = capacidade_pente  # Inicia com pente cheio
+        self.municao_no_pente = capacidade_pente  
         self.tempo_recarga = tempo_recarga
         self.alcance = alcance
         self.tipo_disparo = tipo_disparo
@@ -31,7 +31,6 @@ class Arma:
         self.recarregando = False
         self.tempo_restante = 0
 
-    # 👇 O MÉTODO PRECISA FICAR INDENTADO DENTRO DE "class Arma":
     def atirar(self):
         if self.recarregando:
             print(f"{self.nome} está recarregando...")

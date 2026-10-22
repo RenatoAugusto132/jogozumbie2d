@@ -96,8 +96,7 @@ class Inimigo(Boneco):
             print(f" {self.nome} foi derrotado!")
 
     def atualizar(self):
-        pass  # Fica vazio por enquanto
-
+        pass  
     
 
 
