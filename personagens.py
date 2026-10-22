@@ -48,7 +48,6 @@ class Boneco(ABC):
 
 class Jogador(Boneco):
 
-
     def __init__(self, nome : str, x : float, y : float, dano : int = 10,):
         super().__init__(nome=nome, x=x, y=y, dano=dano)
         self.dinheiro = 5
