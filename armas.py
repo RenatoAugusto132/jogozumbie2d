@@ -13,24 +13,6 @@ class Arma:
         self.recarregando = False
         self.tempo_restante = 0
 
-class Arma:
-    def __init__(self, nome, dano, capacidade_pente, municao_reserva, 
-                 tempo_recarga, alcance, tipo_disparo, velocidade_tiro, peso=1, preco=0):
-        self.nome = nome
-        self.dano = dano
-        self.capacidade_pente = capacidade_pente
-        self.municao_reserva = municao_reserva
-        self.municao_no_pente = capacidade_pente  
-        self.tempo_recarga = tempo_recarga
-        self.alcance = alcance
-        self.tipo_disparo = tipo_disparo
-        self.velocidade_tiro = velocidade_tiro
-        self.peso = peso
-        self.preco = preco
-        
-        self.recarregando = False
-        self.tempo_restante = 0
-
     def atirar(self):
         if self.recarregando:
             print(f"{self.nome} está recarregando...")
