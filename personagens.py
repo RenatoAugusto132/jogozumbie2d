@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 import math
 import random
-import math
+
 
 class Boneco(ABC):
     nome = str
@@ -81,11 +81,12 @@ class Npc(Boneco):
 
 
 class Inimigo(Boneco):
-    def __init__(self, nome : str, x : float, y : float, vida : int, armadura : int, dano : int, velocidade : float):
+    def __init__(self, nome : str, x : float, y : float, vida : int, armadura : int, dano : int, velocidade : float, raio_visao : float = 200.0):
         super().__init__(nome=nome, x=x, y=y, vida=vida, armadura=armadura, dano=dano, velocidade=velocidade)
         self.direcao_x = 0
         self.direcao_y = 0
         self.tempo_para_mudar = 0
+        self.raio_visao = raio_visao
         self.sortear_direcao()
 
     def sortear_direcao(self):
@@ -93,8 +94,18 @@ class Inimigo(Boneco):
         self.direcao_x = math.cos(angulo)
         self.direcao_y = math.sin(angulo)
         self.tempo_para_mudar = random.uniform(1.0,3.0)
-    
 
+    def perseguir_alvo(self, alvo):
+        dx = alvo.x - self.x
+        dy = alvo.y - self.y
+        distancia = math.sqrt(dx ** 2 + dy ** 2)
+
+        if distancia <= self.raio_visao and distancia > 0:
+            self.direcao_x = dx / distancia
+            self.direcao_y = dy / distancia
+            return True
+        return False
+    
     def receber_dano(self, quantidade):
         # A armadura absorve um pouco de dano (mínimo de 1)
         dano_real = max(1, quantidade - self.armadura)
@@ -106,15 +117,20 @@ class Inimigo(Boneco):
             print(f" {self.nome} foi derrotado!")
 
     
-
     def atualizar(self,dt):
         if not self.estar_vivo():
             return
-        self.tempo_para_mudar -= dt
-        if self.tempo_para_mudar <= 0:
-            self.sortear_direcao()
-        self.movimentacao(self.direcao_x, self.direcao_y, dt)
-        
+
+        perseguindo = self.perseguir_alvo(jogador) if jogador else False
+
+        if not perseguindo:
+            self.tempo_para_mudar -= dt
+            if self.tempo_para_mudar <= 0:
+                self.sortear_direcao()
+                
+            self.movimentacao(self.direcao_x, self.direcao_y, dt)   
+
+
     
 
 
