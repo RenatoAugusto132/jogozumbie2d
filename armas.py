@@ -135,7 +135,7 @@ class Pistola(Arma):
             peso=1
         )   
         
-##################
+"""
 class MP5(Submetralhadora):
     def __init__(self):
         super().__init__(nome="MP5", dano=10, capacidade_pente=30, municao_reserva=90, velocidade_tiro=2)
@@ -178,4 +178,4 @@ class FiveSeven(Pistola):
                          capacidade_pente=15, 
                          municao_reserva=60, 
                          velocidade_tiro=1)    
-
+"""
